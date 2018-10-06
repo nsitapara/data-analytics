@@ -1,2 +1,2 @@
 # data-analytics
-data analytics class
+Project  Description - my awesome project!
