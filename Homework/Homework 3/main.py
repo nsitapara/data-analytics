@@ -1,6 +1,5 @@
 import csv
 import os
-
 # budget_data_file =  os.path.abspath(r"C:\Users\NS\Dropbox\UCB\data-analytics\Homework\Homework 3\PyBank\Resources\budget_data.csv")
 budget_data_file = os.path.join("PyBank", "Resources", "budget_data.csv")
 
@@ -30,26 +29,20 @@ with open(budget_data_file, newline='') as csvfile:
         total = total + int(row[1])
         totalmonths_counter += 1
 
-        
-    ##Values are different, are the same if change the values in the cells. different data set?
-#   Greatest Increase in Profits: Feb-2012 ($1926159)
-#   Greatest Decrease in Profits: Sep-2013 ($-2196167)    
+   
+def printandwrite(message):
+    print(message)
+    text_file.write(message)
 
-print("Financial Analysis")
-print("--------------------")
-print("Total Months:", totalmonths_counter)
-print("Total: ",total)
-AverageChange = total / totalmonths_counter
-print("Average  Change: ", AverageChange)
-print("Greatest Increase in Profits: ", IncreaseProfit_Date,"($", IncreaseProfit, ")")
-print("Greatest Decrease in Profits: ", DecreaseProfit_Date,"($", DecreaseProfit, ")") 
 
 # Write output to file called output.txt
 text_file = open('Output.txt', 'w')
-text_file.write("Financial Analysis\n")
-text_file.write("--------------------\n")
-text_file.write("Total Months:" + str(totalmonths_counter) + "\n")
-text_file.write("Total:" + str(total) + "\n")
-text_file.write("Greatest Increase in Profits: " + str(IncreaseProfit_Date) + "($" + str(IncreaseProfit) + ")\n")
-text_file.write("Greatest Decrease in Profits: " + str(DecreaseProfit_Date) + "($" + str(DecreaseProfit) + ")") 
+printandwrite("Financial Analysis\n")
+printandwrite("--------------------\n")
+printandwrite("Total Months:" + str(totalmonths_counter) + "\n")
+printandwrite("Total:" + str(total) + "\n")
+AverageChange = total / totalmonths_counter
+printandwrite("Average  Change: " +str(AverageChange) + "\n")
+printandwrite("Greatest Increase in Profits: " + str(IncreaseProfit_Date) + "($" + str(IncreaseProfit) + ")\n")
+printandwrite("Greatest Decrease in Profits: " + str(DecreaseProfit_Date) + "($" + str(DecreaseProfit) + ")") 
 text_file.close()

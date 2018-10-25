@@ -2,9 +2,9 @@ import csv
 import os
 
 # budget_data_file =  os.path.abspath(r"C:\Users\nsita\Dropbox\UCB\data-analytics\Homework\Homework 3\PyPoll\Resources\election_data.csv")
-# budget_data_file =  os.path.abspath(r"C:\Users\NS\Dropbox\UCB\data-analytics\Homework\Homework 3\PyPoll\Resources\election_data.csv")
-budget_data_file =  os.path.join("PyPoll", "Resources", "election_data.csv")
-
+budget_data_file =  os.path.abspath(r"C:\Users\NS\Dropbox\UCB\data-analytics\Homework\Homework 3\PyPoll\Resources\election_data.csv")
+# budget_data_file =  os.path.join("PyPoll", "Resources", "election_data.csv")
+text_file = open('Part2_Output.txt', 'w')
 dict = {}
 with open(budget_data_file, newline='') as csvfile:
     csvreader = csv.reader(csvfile, delimiter=',')
@@ -30,6 +30,7 @@ for key in dict:
 print(allvotes)
 result = {}
 winner_per = 0
+#to calculate the percentage for each candidiate
 for key in dict:
     percentage = dict[key]/allvotes 
     result[key]= percentage
@@ -38,26 +39,21 @@ for key in dict:
         winner_name = key
    
 print(result)
-print("Election results\n")
-print("-------------------\n")
-print("Total Votes:" + str(allvotes) + "\n")
-print("-------------------\n")
-for items in result:
-    print(items + ": "+ "{:.3%}".format(result[items]))
-print("-------------------\n")
 
-print("Winner: " + winner_name)
-print("-------------------\n")
 
-# # # Write output to file called Part2_Output.txt
-text_file = open('Part2_Output.txt', 'w')
-text_file.write("Election results\n")
-text_file.write("-------------------\n")
-text_file.write("Total Votes:" + str(allvotes) + "\n")
-text_file.write("-------------------\n")
+#method to print and write out the message
+def printandwrite(message):
+    print(message)
+    text_file.write(message)
+
+#calling the method with the inputs
+printandwrite("Election results\n")
+printandwrite("-------------------\n")
+printandwrite("Total Votes:" + str(allvotes) + "\n")
+printandwrite("-------------------\n")
 for items in result:
-    text_file.write(items + ": "+ "{:.3%}".format(result[items]) + "\n")
-text_file.write("-------------------\n")
-text_file.write("Winner: " + winner_name + "\n")
-text_file.write("-------------------\n")
-text_file.close()
+    printandwrite(items + ": "+ "{:.3%}".format(result[items])+"\n")
+printandwrite("-------------------\n")
+
+printandwrite("Winner: " + winner_name + "\n")
+printandwrite("-------------------\n")
