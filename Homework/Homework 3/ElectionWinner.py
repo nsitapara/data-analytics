@@ -1,9 +1,9 @@
 import csv
 import os
 
-# budget_data_file =  os.path.abspath(r"C:\Users\nsita\Dropbox\UCB\data-analytics\Homework\Homework 3\PyPoll\Resources\election_data.csv")
+budget_data_file =  os.path.abspath(r"C:\Users\nsita\Dropbox\UCB\data-analytics\Homework\Homework 3\PyPoll\Resources\election_data.csv")
 budget_data_file =  os.path.abspath(r"C:\Users\NS\Dropbox\UCB\data-analytics\Homework\Homework 3\PyPoll\Resources\election_data.csv")
-# budget_data_file =  os.path.join("PyPoll", "Resources", "election_data.csv")
+budget_data_file =  os.path.join("PyPoll", "Resources", "election_data.csv")
 text_file = open('Part2_Output.txt', 'w')
 dict = {}
 with open(budget_data_file, newline='') as csvfile:
