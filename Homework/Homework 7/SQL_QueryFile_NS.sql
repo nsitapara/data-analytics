@@ -1,24 +1,25 @@
 use sakila;
 
--- 1a
+-- 1a display of the first and last name from the actor table
 select first_name,last_name
 from actor;
--- 1b
+
+-- 1b same as question about but applying concat function to generate a new column called Actor name
 select first_name,last_name,
 concat(first_name, " " ,last_name) as 'Actor Name'
 from actor;
 
--- 2a
+-- 2a select first and last name and actor id of person first named Joe
 select actor_id,first_name,last_name
 from actor
 where first_name = "Joe";
 
--- 2b
+-- 2b select actor id, first name and last name of all actors that have GEN in last name
 select actor_id,first_name,last_name
 from actor
 where last_name like "%GEN%";
 
--- 2c
+-- 2c select actor id, first name and last name of all actors that have LI in last name and orderd by last abd first name
 select actor_id,first_name,last_name
 from actor
 where last_name like "%LI%"
@@ -30,22 +31,22 @@ select country_id, country
 from country
 where country in ('Afghanistan', 'Bangladesh','China');
 
--- 3a 
+-- 3a add description from actor with type blob
 
 alter table actor
 add description blob;
 
--- 3b
+-- 3b remove description from actor
 
 alter table actor
 drop description;
 
--- 4a
+-- 4a count the number of last_name 
 select last_name, count(last_name)
 from actor
 group by last_name;
 
--- 4b
+-- 4b show only with count with higer then 2 for last_name
 select last_name, count(last_name)
 from actor
 group by last_name
@@ -57,38 +58,28 @@ select first_name, last_name
 from actor
 where last_name = 'williams';
 
--- 4c
+-- 4c change groucho to harpo
 
 update actor
 set first_name = 'HARPO'
 where first_name = 'GROUCHO';
 
--- 4d
+-- 4d change harpo to groucho
 update actor
 set first_name = 'GROUCHO'
 where first_name = 'HARPO';
 
--- 5a
-create table address (
-	address_id smallint(5),
-    address varchar(50),
-    address2 varchar(50) not null,
-    district varchar(20),
-    city_id smallint(5),
-    postal_code varchar(10) not null,
-    phone varchar(20),
-    location geometry,
-    last_update timestamp
-);
+-- 5a shoow create table address
+show create table address;
 
--- 6a
+-- 6a display  the staff
 select staff.first_name, staff.last_name, address.address
 from staff
 join address
 on staff.address_id = address.address_id
 group by first_name,last_name;
 
--- 6b
+-- 6b add all payments made after aug 2005 for each staff
 select staff.first_name, staff.last_name, sum(payment.amount)
 from staff
 join payment
@@ -96,16 +87,14 @@ on staff.staff_id = payment.staff_id
 where payment.payment_date >= '2005-08-01'
 group by first_name,last_name;
 
--- 6c
-
--- question about relating back to actor names from actor table
+-- 6c  List each film and the number of actors who are listed for that film. Use tables `film_actor` and `film`. Use inner join.
 
 select film_actor.actor_id, film_actor.film_id, film.film_id, film.title
 from film_actor
 inner join film
 on film_actor.film_id = film.film_id;
 
--- 6d
+-- 6d How many copies of the film `Hunchback Impossible` exist in the inventory system?
 
 select film.title, count(inventory.inventory_id) Copies
 from film
@@ -114,7 +103,7 @@ on film.film_id = inventory.film_id
 where title like 'Hunchback Impossible'
 group by film.title;
 
--- 6e
+-- 6e Using the tables `payment` and `customer` and the `JOIN` command, list the total paid by each customer. List the customers alphabetically by last name
 
 select customer.first_name, customer.last_name , sum(amount)
 from customer
@@ -123,13 +112,13 @@ on customer.customer_id = payment.customer_id
 group by customer.first_name, customer.last_name
 order by customer.last_name asc;
 
--- 7a 
+-- 7a  The music of Queen and Kris Kristofferson have seen an unlikely resurgence. As an unintended consequence, films starting with the letters `K` and `Q` have also soared in popularity. Use subqueries to display the titles of movies starting with the letters `K` and `Q` whose language is English.
 select film.title
 from film
 where title like 'Q%' or title like 'K%' AND 
 language_id = (select language_id from language where name = 'English');
  
--- 7b find all the actors in the movie and show first and last name
+-- 7b find all the actors in the movie alone trip and show first and last name
 select first_name, last_name
 from actor
 where actor_id in 
