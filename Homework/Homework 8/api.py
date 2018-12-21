@@ -7,7 +7,6 @@ from flask import Flask, jsonify
 #################################################
 app = Flask(__name__)
 
-
 #################################################
 # Flask Routes
 #################################################
@@ -29,21 +28,10 @@ def tobs():
 
 @app.route("/api/v1.0/<start>")
 def start(start):
-    # def calc_temps_method(start_date, end_date):
-    #     engine = create_engine("sqlite:///" + r"C:\Users\nsita\Dropbox\UCB\data-analytics\Homework\Homework 8\Resources\hawaii.sqlite")
-    #     session = Session(engine)
-    #     query = session.query(\
-    #     func.min(Measurement.tobs),\
-    #     func.avg(Measurement.tobs),\
-    #     func.max(Measurement.tobs)).\
-    #     filter(Measurement.date >=start_date).\
-    #     filter(Measurement.date <=end_date).\
-    #     all()
-    #     query_to_return = query
-    #     return (query_to_return)
-    
+
     max_date = data.max_date
     to_retun = data.calc_temps(start,max_date)
+
     convert_to_individual = to_retun[0]
     TMIN = convert_to_individual[0]
     TAVG = convert_to_individual[1]
@@ -52,14 +40,16 @@ def start(start):
     start_date_only_dict = pd.DataFrame({"Temp Min":[TMIN],
                 "Temp Max":[TMAX],
                 "Temp Average":[TAVG]})
+
     start_date_only_dict = start_date_only_dict.to_dict()
 
     return jsonify(start_date_only_dict)
 
 @app.route("/api/v1.0/<start>/<end>")
 def start_end(start,end):
-    # print(calc_temps(start,end))
+
     to_retun = data.calc_temps(start,end)
+
     convert_to_individual = to_retun[0]
     TMIN = convert_to_individual[0]
     TAVG = convert_to_individual[1]
@@ -68,6 +58,7 @@ def start_end(start,end):
     start_end_date_dict = pd.DataFrame({"Temp Min":[TMIN],
                 "Temp Max":[TMAX],
                 "Temp Average":[TAVG]})
+                
     start_end_date_dict = start_end_date_dict.to_dict()
     return jsonify(start_end_date_dict)
 
@@ -87,4 +78,4 @@ def welcome():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    app.run(debug=False)
