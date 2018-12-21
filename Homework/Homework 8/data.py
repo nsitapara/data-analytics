@@ -11,8 +11,7 @@ from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, func
 # engine = create_engine("sqlite:///Resources/hawaii.sqlite")
 
-engine = create_engine("sqlite:///" + r"C:\Users\nsita\Dropbox\UCB\data-analytics\Homework\Homework 8\Resources\hawaii.sqlite")
-
+engine = create_engine("sqlite:///" + r"C:\Users\nsita\Dropbox\UCB\data-analytics\Homework\Homework 8\Resources\hawaii.sqlite", connect_args={'check_same_thread': False}, echo=True)
 # reflect an existing database into a new model
 Base = automap_base()
 # reflect the tables
@@ -125,18 +124,8 @@ USC00519281_tobs_dict
 USC00519281_tobs.plot(kind='hist')
 # Write a function called `calc_temps` that will accept start date and end date in the format '%Y-%m-%d' 
 # and return the minimum, average, and maximum temperatures for that range of dates
+
 def calc_temps(start_date, end_date):
-#     tmin = session.query(func.min(Measurement.tobs)).filter(Measurement.date >= start_date).filter(Measurement.date <= end_date).all()
-#     tavg = session.query(func.avg(Measurement.tobs)).filter(Measurement.date >= start_date).filter(Measurement.date <= end_date).all()
-#     tmax = session.query(func.max(Measurement.tobs)).filter(Measurement.date >= start_date).filter(Measurement.date <= end_date).all()
-    """TMIN, TAVG, and TMAX for a list of dates.
-    Args:
-        start_date (string): A date string in the format %Y-%m-%d
-        end_date (string): A date string in the format %Y-%m-%d
-        
-    Returns:
-        TMIN, TAVE, and TMAX
-    """
     toreturn = session.query(\
     func.min(Measurement.tobs),\
     func.avg(Measurement.tobs),\
@@ -144,13 +133,8 @@ def calc_temps(start_date, end_date):
     filter(Measurement.date >=start_date).\
     filter(Measurement.date <=end_date).\
     all()
-#     print(toreturn)
-#     toreturn = toreturn[0]
-#     TMIN = toreturn[0]
-#     TAVE = toreturn[1]
-#     TMAX = toreturn[2]
-# #     print(TMIN, TAVE, TMAX)
     return toreturn
+
 print(calc_temps('2012-02-28', '2012-03-05'))
 # Use your previous function `calc_temps` to calculate the tmin, tavg, and tmax 
 # for your trip using the previous year's data for those same dates.
@@ -218,79 +202,3 @@ measurement_station_merged = measurement_station_merged[["station","name","latit
 measurement_station_merged_dict = measurement_station_merged.to_dict(orient='records')
 # print(measurement_station_merged_dict)
 
-
-
-
-from flask import Flask, jsonify
-
-#################################################
-# Flask Setup
-#################################################
-app = Flask(__name__)
-
-
-#################################################
-# Flask Routes
-#################################################
-
-@app.route("/api/v1.0/precipitation")
-def precipitation():
-    
-    return jsonify(measurement_station_merged_dict)
-
-@app.route("/api/v1.0/stations")
-def stations():
-    
-    return jsonify(most_active_station_dict)
-
-@app.route("/api/v1.0/tobs")
-def tobs():
-    
-    return jsonify(USC00519281_tobs_dict)
-
-@app.route("/api/v1.0/<string:start>")
-def start():
-    # to_retun = calc_temps(start,max_date)
-    # convert_to_individual = to_retun[0]
-    # TMIN = convert_to_individual[0]
-    # TAVG = convert_to_individual[1]
-    # TMAX = convert_to_individual[2]
-
-    # start_date_only_dict = pd.DataFrame({"Temp Min":[TMIN],
-    #             "Temp Max":[TMAX],
-    #             "Temp Average":[TAVG]})
-    # start_date_only_dict = start_date_only_dict.to_dict()
-
-    return start
-
-@app.route("/api/v1.0/<start>/<end>")
-def start_end():
-    to_retun = calc_temps(start,end)
-    convert_to_individual = to_retun[0]
-    TMIN = convert_to_individual[0]
-    TAVG = convert_to_individual[1]
-    TMAX = convert_to_individual[2]
-
-    start_end_date_dict = pd.DataFrame({"Temp Min":[TMIN],
-                "Temp Max":[TMAX],
-                "Temp Average":[TAVG]})
-    start_end_date_dict = start_end_date_dict.to_dict()
-    return jsonify(start_end_date_dict)
-
-
-@app.route("/")
-def welcome():
-    return (
-        f"Welcome to the Homework 8 Flask API<br/>"
-        f"Available Routes:<br>"
-        f"/api/v1.0/precipitation<br>"
-        f"/api/v1.0/stations<br>"
-        f"/api/v1.0/tobs<br>"
-        f"/api/v1.0/start<br>"
-        f"/api/v1.0/start/end<br>"
-
-    )
-
-
-if __name__ == "__main__":
-    app.run(debug=True)
