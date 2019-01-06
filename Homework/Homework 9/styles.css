@@ -1,0 +1,51 @@
+/* Add your styles here */
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #5191fd;
+  }
+  
+  li {
+    float: left;
+    border: #111
+  }
+  
+  li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    
+  }
+  
+  li a:hover:not(.active) {
+    background-color: #111;
+  }
+  
+  .active {
+    background-color: #4CAF50;
+  }
+
+  h1{
+      font-size: 50px;
+      text-align: center;
+  }
+  header{
+    padding: 70px;
+    background-color: #cdcdcd
+  }
+
+  article{
+      padding:15px;
+
+  }
+  main{
+      background-color: #f1f1f1;
+  }
+
+  h3{
+      font-size: 30px;
+  }
