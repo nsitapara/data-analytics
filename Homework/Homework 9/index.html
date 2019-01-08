@@ -2,17 +2,19 @@
 <html lang="en">
 
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8"> 
   <title>Home Page</title>
   <!-- <link rel="stylesheet" href="reset.css"> -->
   <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
 
 <!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
 
 <!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
 </head>
 
 <body>
@@ -23,7 +25,7 @@
           <!-- Row 1 -->
           <div class="row">
             <div class="col-md-12">
-                <nav class="navbar navbar-default">
+                <nav class="navbar navbar-inverse">
                     <div class="container-fluid">
                       <!-- Brand and toggle get grouped for better mobile display -->
                       <div class="navbar-header">
@@ -33,45 +35,22 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                       </button>
-                        <a class="navbar-brand" href="#">Navbar</a>
+                        <a class="navbar-brand" href="index.html">Lattiude</a>
                       </div>
-                
                       <!-- Collect the nav links, forms, and other content for toggling -->
                       <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-                        <ul class="nav navbar-nav">
-                          <li class="active"><a href="#">Link <span class="sr-only">(current)</span></a></li>
-                          <li><a href="#">Link</a></li>
-                          <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                              <li><a href="#">Action</a></li>
-                              <li><a href="#">Another action</a></li>
-                              <li><a href="#">Something else here</a></li>
-                              <li role="separator" class="divider"></li>
-                              <li><a href="#">Separated link</a></li>
-                              <li role="separator" class="divider"></li>
-                              <li><a href="#">One more separated link</a></li>
-                            </ul>
-                          </li>
-                        </ul>
-                        <form class="navbar-form navbar-left">
-                          <div class="form-group">
-                            <input type="text" class="form-control" placeholder="Search">
-                          </div>
-                          <button type="submit" class="btn btn-default">Submit</button>
-                        </form>
                         <ul class="nav navbar-nav navbar-right">
-                          <li><a href="#">Link</a></li>
                           <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
+                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Plots <span class="caret"></span></a>
                             <ul class="dropdown-menu">
-                              <li><a href="#">Action</a></li>
-                              <li><a href="#">Another action</a></li>
-                              <li><a href="#">Something else here</a></li>
-                              <li role="separator" class="divider"></li>
-                              <li><a href="#">Separated link</a></li>
+                              <li><a href="max_temp.html">Max Temp</a></li>
+                              <li><a href="humidity_page.html">Humidity</a></li>
+                              <li><a href="cloudiness_page.html">Cloudiness</a></li>
+                              <li><a href="windspeed_page.html">Wind Speed</a></li>
                             </ul>
                           </li>
+                          <li><a href="comp_page.html">Comparison</a></li>
+                          <li><a href="data.html">Data</a></li>
                         </ul>
                       </div>
                       <!-- /.navbar-collapse -->
@@ -83,25 +62,29 @@
       
           <div class="row">
             <div class="col-md-8 col-sm-12">
-              <img src="C:\Users\NS\Dropbox\UCB\data-analytics\Homework\Homework 9\Instructions\Resources\assets\images\Fig1.png">
-              <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Incidunt optio provident tempora amet, eveniet et, eum illum, culpa laborum dicta recusandae magni architecto. Illo saepe facilis, unde. Debitis, atque, doloremque?</p>
+              <h1>Summary: Latitude Vs. X</h1>
+              <img class="pull-left" src="Resources\assets\images\Fig1.png" style="width:200px;height:200px;" >
+              <br>
+              <p>The purpose of this project was to analyze how weather changes as you get closer to the equator. To accomplish this analysis, we first pulled data from the OpenWeatherMap API to assemble a dataset on over 500 cities.</p>
+
+              <p>After assembling the dataset, we used Matplotlib to plot various aspects of the weather vs latitude. Factors we looked at included: temperature, cloudiness, wind speed, and humidity. This site provides the source data and visualizations created as part of the analysis, as well as explanations and descriptions of any trends and correlations witnessed.</p>
             </div>
             <div class="col-md-4 col-sm-0">
               <p><h2 class="text-center text-primary">Visuizations</h2></p>
               <div class="row">
                 <div class="col-md-6">
-                  <img src="C:\Users\NS\Dropbox\UCB\data-analytics\Homework\Homework 9\Instructions\Resources\assets\images\Fig1.png" style="width:200px;height:200px;">
+                  <a href="max_temp.html"><img src="Resources\assets\images\Fig1.png" style="width:200px;height:200px;"></a>
                 </div>
                 <div class="col-md-6">
-                    <img src="C:\Users\NS\Dropbox\UCB\data-analytics\Homework\Homework 9\Instructions\Resources\assets\images\Fig2.png" style="width:200px;height:200px;">
+                    <a href="humidity_page.html"><img src="Resources\assets\images\Fig2.png" style="width:200px;height:200px;"></a>
                 </div>
               </div>
               <div class="row">
                 <div class="col-md-6">
-                    <img src="C:\Users\NS\Dropbox\UCB\data-analytics\Homework\Homework 9\Instructions\Resources\assets\images\Fig3.png" style="width:200px;height:200px;">
+                    <a href="cloudiness_page.html"><img src="Resources\assets\images\Fig3.png" style="width:200px;height:200px;"></a>
                 </div>
                 <div class="col-md-6">
-                    <img src="C:\Users\NS\Dropbox\UCB\data-analytics\Homework\Homework 9\Instructions\Resources\assets\images\Fig4.png" style="width:200px;height:200px;">
+                    <a href="windspeed_page.html"><img src="Resources\assets\images\Fig4.png" style="width:200px;height:200px;"></a>
                 </div>
             </div>
           </div>
