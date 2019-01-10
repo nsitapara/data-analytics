@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Mission to Mars</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+</head>
+
+<body>
+  <div class="container">
+
+    <div class="jumbotron text-center">
+      <h1>Mission to Mars</h1>
+      <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
+    </div>
+
+    <!-- featured_image_url = client.nasa_data.featured_image_url.find({})
+    mars_weather = client.nasa_data.mars_weather.find({})
+    wallpaper = client.nasa_data.wallpaper.find({})
+    article = client.nasa_data.items.find_one({}) -->
+
+
+    <!-- Craigslist Listings -->
+    <div class="row" id="craiglist-listings">
+      <div class="col-md-12">
+        <h2>Latest Mars News:</h2>
+        
+          <h4><b>{{article.title}}</b></h4>
+          <p>{{article.paragraph}}</p>
+      </div>
+    <div class="row" id="craiglist-listings">
+        <div class="col-md-7">
+          <p><h1>Featured Marse Image</h1>
+            <img src="{{featured_image_url.featured_image_url}}" height="600" width="600">
+          </p>
+        </div>
+        <div class="col-md-5" style="border-style:groove">
+            <p><h4>Current Mars Weather</h4>
+              <p>{{mars_weather.mars_weather}}</p>
+            </p>
+        </div>
+        <div>
+          <p><h4>Mars Facts</h4></p>
+
+          <table border="1" class="dataframe">
+            <thead>
+              <tr style="text-align: right;">
+                
+                <th>Description</th>
+                <th>Information</th>
+              </tr>
+            </thead>
+            <tbody>
+                {% for fact in mars_facts%}
+                <tr>
+                <td>{{fact}}</td>
+                <td>{{mars_facts[fact]}}</td>
+                </tr>
+                {%endfor%}
+            </tbody>
+            </table>
+        </div>
+    </div>
+
+
+
+        <!-- {% for item in listings %}
+        <h4>{{item.price}} {{item.headline}}</h4>
+        <small>{{item.hood}}</small>
+        {%endfor%} -->
+      </div>
+    </div>
+
+  </div>
+</body>
+
+</html>
+
