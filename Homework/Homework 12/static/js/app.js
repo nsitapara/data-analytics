@@ -12,7 +12,7 @@ function buildMetadata(sample) {
     panel.html("")
 
     Object.entries(data).forEach(function(key_value){
-    panel.append("p").text(`${key_value[0]}:${key_value[1]}`)  
+    panel.append("p").text(`${key_value[0]}:${key_value[1]}`).style("font-weight: bold")  
     })
   });
     // Use d3 to select the panel with id of `#sample-metadata`
@@ -43,7 +43,9 @@ function buildCharts(sample) {
       y: info["sample_values"],
       mode:"markers",
       marker:{
-        size:info["sample_values"]
+        size:info["sample_values"],
+        // colorscale:"Earth",
+        color:info["otu_ids"].slice(0,10)
       }
     }]
     var layout = {
@@ -75,13 +77,18 @@ function buildCharts(sample) {
         }
       }
     };
+    Plotly.newPlot("pie",trace1)
+
+    Plotly.newPlot("bubble",trace2,layout)
     
+
+
+
+
   
   // console.log(data)
 
-  Plotly.newPlot("pie",trace1)
 
-  Plotly.newPlot("bubble",trace2,layout)
 
   })
     // @TODO: Build a Bubble Chart using the sample data
@@ -91,6 +98,10 @@ function buildCharts(sample) {
     // HINT: You will need to use slice() to grab the top 10 sample_values,
     // otu_ids, and labels (10 each).
 }
+
+
+
+
 
 function init() {
   // Grab a reference to the dropdown select element
