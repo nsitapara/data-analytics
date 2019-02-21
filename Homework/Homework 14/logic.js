@@ -15,15 +15,32 @@ function createFeatures(earthquakeData) {
     layer.bindPopup("<h3>" + feature.properties.place +
       "</h3><hr><p>" + new Date(feature.properties.time) + "</p>");
   }
+  function checkcolor(feature){
+    
+      if (feature < 2.0){
+        console.log(feature)
+        return "green"
+      }
+
+      if (feature < 5.0){
+        return "yellow"
+      }
+
+      if (feature > 5.0){
+        return "red"
+      }
+ 
+    }
+  
 
   // Create a GeoJSON layer containing the features array on the earthquakeData object
   // Run the onEachFeature function once for each piece of data in the array
   console.log(queryUrl)
-  var earthquakes = L.geoJSON(earthquakeData, {    
+  var earthquakes = L.geoJSON(earthquakeData, {   
     pointToLayer: function (feature, latlng) {
         return L.circleMarker (latlng,{
             radius: feature.properties.mag*5,
-            fillColor: "lightblue",
+            fillColor: checkcolor(feature.properties.mag),
             color: "#000",
             weight: 1,
             opacity: 1,
